@@ -3,6 +3,83 @@
  * A warm, dark theme inspired by productivity dashboards.
  */
 
+.theme-light {
+    /* --- Palette Definitions (Laper.ai Inspired) --- */
+
+    /* Backgrounds */
+    --oat-bg-base: #f2f3f0;
+    /* Darker grey-green for ribbons/frame (Laper b3) */
+    --oat-bg-surface-1: #f8f9f6;
+    /* Sidebars (Laper b2) */
+    --oat-bg-surface-2: #fdfefb;
+    /* Main content (Laper b1) */
+    --oat-bg-surface-3: #ffffff;
+    /* Cards/Modals */
+    --oat-bg-surface-4: #e8f4e8;
+    /* Hover states (Laper accent4) */
+    --oat-bg-surface-5: #dce4d8;
+    /* Inputs/Borders (Laper divider) */
+
+    /* Text Colors */
+    --oat-text-primary: #293b1f;
+    /* Laper t1 */
+    --oat-text-secondary: #65725e;
+    /* Laper t2 */
+    --oat-text-tertiary: #979e8a;
+    /* Laper t3 */
+
+    /* Accents & Status */
+    --oat-green: #526c4b;
+    /* Laper accent1 */
+    --oat-red: #a85751;
+    /* Laper error */
+    --oat-accent: #74896e;
+    /* Laper accent2 */
+
+    /* Borders */
+    --oat-border: #e2e6e0;
+    /* Laper border */
+
+    /* --- Obsidian Variable Mappings --- */
+    --background-primary: var(--oat-bg-surface-2);
+    --background-primary-alt: var(--oat-bg-surface-1);
+    --background-secondary: var(--oat-bg-surface-1);
+    --background-secondary-alt: var(--oat-bg-base);
+    --background-modifier-border: var(--oat-border);
+    --background-modifier-form-field: var(--oat-bg-surface-3);
+    --background-modifier-cover: rgba(41, 59, 31, 0.2);
+
+    /* Text */
+    --text-normal: var(--oat-text-primary);
+    --text-muted: var(--oat-text-secondary);
+    --text-faint: var(--oat-text-tertiary);
+    --text-accent: var(--oat-green);
+    --text-on-accent: #ffffff;
+
+    /* Interactive / Accents */
+    --interactive-accent: var(--oat-green);
+    --interactive-accent-hover: var(--oat-text-primary);
+    --interactive-normal: var(--oat-bg-surface-1);
+    --interactive-hover: var(--oat-bg-surface-4);
+
+    /* Scrollbars */
+    --scrollbar-active-thumb-bg: var(--oat-text-tertiary);
+    --scrollbar-bg: transparent;
+    --scrollbar-thumb-bg: var(--oat-bg-surface-5);
+
+    /* Typography */
+    --font-default: 'Montserrat', 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-interface: var(--font-default);
+    --font-text: var(--font-default);
+    --font-monospace: 'Courier New', 'Songti SC', monospace;
+
+    /* Dimensions */
+    --radius-s: 4px;
+    --radius-m: 8px;
+    --radius-l: 12px;
+    --line-height-normal: 1.6;
+}
+
 .theme-dark {
     /* --- Palette Definitions --- */
 
