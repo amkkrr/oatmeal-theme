@@ -1,0 +1,9 @@
+# Ignore everything by default
+*
+
+# Whitelist essential Obsidian theme files
+!manifest.json
+!theme.css
+!.gitignore
+!README.md
+!LICENSE

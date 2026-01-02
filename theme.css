@@ -1,0 +1,277 @@
+/**
+ * Oatmeal Theme for Obsidian
+ * A warm, dark theme inspired by productivity dashboards.
+ */
+
+.theme-dark {
+    /* --- Palette Definitions --- */
+
+    /* Backgrounds: Ranging from darkest (window frame) to lighter (cards/inputs) */
+    --oat-bg-base: #181615;
+    /* Far left sidebar, window frame */
+    --oat-bg-surface-1: #1e1c1b;
+    /* Sidebar panels */
+    --oat-bg-surface-2: #242220;
+    /* Main content area */
+    --oat-bg-surface-3: #2b2927;
+    /* Hover states, selected items */
+    --oat-bg-surface-4: #363330;
+    /* Card backgrounds, inputs */
+    --oat-bg-surface-5: #4a4542;
+    /* Buttons, heavier UI elements */
+
+    /* Text Colors */
+    --oat-text-primary: #e8e4df;
+    /* Main headings, body text */
+    --oat-text-secondary: #9e9892;
+    /* Metadata, subtitles */
+    --oat-text-tertiary: #66615d;
+    /* Placeholders, faint details */
+
+    /* Accents & Status */
+    --oat-green: #6b9a7c;
+    --oat-red: #c76a72;
+    --oat-accent: #8a7f76;
+    /* Warm neutral accent */
+
+    /* Borders */
+    --oat-border: #33302e;
+
+    /* --- Obsidian Variable Mappings --- */
+
+    /* Backgrounds */
+    --background-primary: var(--oat-bg-surface-2);
+    --background-primary-alt: var(--oat-bg-surface-3);
+    --background-secondary: var(--oat-bg-surface-1);
+    --background-secondary-alt: var(--oat-bg-base);
+    --background-modifier-border: var(--oat-border);
+    --background-modifier-form-field: var(--oat-bg-surface-1);
+    --background-modifier-cover: rgba(24, 22, 21, 0.6);
+
+    /* Text */
+    --text-normal: var(--oat-text-primary);
+    --text-muted: var(--oat-text-secondary);
+    --text-faint: var(--oat-text-tertiary);
+    --text-accent: var(--oat-green);
+    --text-on-accent: var(--oat-text-primary);
+
+    /* Interactive / Accents */
+    --interactive-accent: var(--oat-bg-surface-5);
+    --interactive-accent-hover: var(--oat-text-primary);
+    --interactive-normal: var(--oat-bg-surface-1);
+    --interactive-hover: var(--oat-bg-surface-3);
+
+    /* Scrollbars */
+    --scrollbar-active-thumb-bg: var(--oat-bg-surface-4);
+    --scrollbar-bg: transparent;
+    --scrollbar-thumb-bg: var(--oat-bg-surface-3);
+
+    /* Typography */
+    --font-default: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-interface: var(--font-default);
+    --font-text: var(--font-default);
+    --font-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Dimensions & Spacing */
+    --radius-s: 4px;
+    --radius-m: 8px;
+    --radius-l: 12px;
+    --line-height-normal: 1.6;
+}
+
+/* --- Global & Workspace --- */
+
+body {
+    font-family: var(--font-interface);
+    letter-spacing: -0.01em;
+}
+
+/* Window Frame (Top Titlebar) */
+.titlebar {
+    background-color: var(--oat-bg-base);
+    border-bottom: 1px solid var(--oat-border);
+}
+
+.titlebar-text {
+    color: var(--oat-text-secondary);
+    font-weight: 500;
+}
+
+/* StatusBar */
+.status-bar {
+    background-color: var(--oat-bg-base);
+    border-top: 1px solid var(--oat-border);
+    color: var(--oat-text-tertiary);
+}
+
+/* --- Sidebar (Left Navigation) --- */
+
+/* The narrow ribbon on the far left */
+.workspace-ribbon {
+    background-color: var(--oat-bg-base);
+    border-right: 1px solid var(--oat-border);
+}
+
+.workspace-ribbon.mod-left:not(.is-collapsed) {
+    border-right-color: var(--oat-border);
+}
+
+.clickable-icon {
+    color: var(--oat-text-secondary);
+    opacity: 0.8;
+}
+
+.clickable-icon:hover {
+    color: var(--oat-text-primary);
+    background-color: var(--oat-bg-surface-3);
+    opacity: 1;
+}
+
+/* Side dock containers (File Explorer, etc.) */
+.workspace-split.mod-left-split {
+    background-color: var(--oat-bg-surface-1);
+}
+
+.workspace-tab-header-container {
+    background-color: var(--oat-bg-surface-1);
+    border-bottom: 1px solid var(--oat-border);
+}
+
+.workspace-tab-header {
+    color: var(--oat-text-secondary);
+}
+
+.workspace-tab-header.is-active {
+    color: var(--oat-text-primary);
+    background-color: transparent;
+    font-weight: 600;
+    box-shadow: none;
+    /* Remove underline default style */
+}
+
+/* --- File Explorer / Lists --- */
+
+.nav-file-title,
+.nav-folder-title {
+    color: var(--oat-text-secondary);
+    border-radius: var(--radius-s);
+    padding: 6px 12px;
+    margin-bottom: 1px;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+    background-color: var(--oat-bg-surface-3);
+    color: var(--oat-text-primary);
+}
+
+.nav-file-title.is-active {
+    background-color: var(--oat-bg-surface-3);
+    color: var(--oat-text-primary);
+    font-weight: 500;
+}
+
+/* --- Main Content Area --- */
+
+.workspace-split.mod-root {
+    background-color: var(--oat-bg-surface-2);
+}
+
+.view-header {
+    background-color: var(--oat-bg-surface-2);
+    border-bottom: 1px solid var(--oat-border);
+}
+
+.view-header-title {
+    font-weight: 600;
+    color: var(--oat-text-primary);
+}
+
+/* Editor Styling */
+.markdown-source-view.mod-cm6 .cm-scroller {
+    padding: 20px;
+}
+
+.markdown-preview-view {
+    padding: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--oat-text-primary);
+    font-weight: 600;
+}
+
+p {
+    color: var(--oat-text-primary);
+    line-height: 1.6;
+}
+
+/* Blockquotes as email-like indented blocks */
+blockquote {
+    border-left: none;
+    background-color: var(--oat-bg-surface-2);
+    border-radius: var(--radius-m);
+    color: var(--oat-text-secondary);
+    margin: 1em 0;
+    padding: 12px 16px;
+}
+
+/* --- UI Components --- */
+
+/* Buttons */
+button.mod-cta {
+    background-color: var(--oat-bg-surface-5);
+    color: var(--oat-text-primary);
+    border-radius: var(--radius-s);
+    padding: 6px 16px;
+    font-weight: 500;
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+button.mod-cta:hover {
+    background-color: #554f4b;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="search"],
+textarea {
+    background-color: var(--oat-bg-surface-1);
+    border: 1px solid var(--oat-border);
+    border-radius: var(--radius-m);
+    color: var(--oat-text-primary);
+    padding: 8px 12px;
+}
+
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+    border-color: var(--oat-text-secondary);
+    box-shadow: none;
+}
+
+/* Tags / Badges - Mimicking the "Active" and "High value" pills */
+.tag {
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+/* Custom classes for the user to use if they want to replicate the screenshot exactly,
+   though Obsidian tags usually just change color. */
+.tag[href="#active"] {
+    background-color: rgba(107, 154, 124, 0.2);
+    color: var(--oat-green);
+}
+
+.tag[href="#high-value"] {
+    background-color: rgba(199, 106, 114, 0.2);
+    color: var(--oat-red);
+}
