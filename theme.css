@@ -713,36 +713,125 @@ a.tag[href="#high-value"]:visited {
     list-style: none;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 10px;
     margin-left: -1.5em; /* Counteract padding-left of ul */
+    position: relative;
+    transition: color 0.3s ease;
 }
 
+/* Checkbox Base Styles */
 .task-list-item-checkbox {
     appearance: none;
     -webkit-appearance: none;
-    width: 16px;
-    height: 16px;
-    border: 1px solid var(--oat-text-tertiary);
-    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--oat-text-tertiary);
+    border-radius: 6px;
     background-color: var(--oat-bg-surface-1);
     position: relative;
-    top: 4px;
+    top: 2px; /* Visual alignment with text */
     cursor: pointer;
     flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    display: grid;
+    place-items: center;
+    z-index: 1;
 }
 
+/* Hover Effect */
+.task-list-item-checkbox:hover {
+    border-color: var(--oat-green);
+    background-color: var(--oat-bg-surface-2);
+}
+
+/* Checked State - Box */
 .task-list-item-checkbox:checked {
     background-color: var(--oat-green);
     border-color: var(--oat-green);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath fill='white' d='M2.5,7 L5.5,10 L11.5,4' stroke='white' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    animation: jelly 0.6s ease;
 }
 
+/* Check Mark (Tick) - Created via clip-path */
+.task-list-item-checkbox::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    transform: scale(0) rotate(-45deg);
+    background-color: white;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) 0.1s; /* Slight delay for tick */
+    box-shadow: 0 0 2px rgba(0,0,0,0.1);
+}
+
+.task-list-item-checkbox:checked::before {
+    transform: scale(1) rotate(0deg);
+}
+
+/* Fireworks / Particle Explosion Effect */
+.task-list-item-checkbox::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.task-list-item-checkbox:checked::after {
+    animation: fireworks 0.6s ease forwards;
+}
+
+/* Strikethrough Animation */
 .task-list-item.is-checked {
-    text-decoration: line-through;
     color: var(--oat-text-tertiary);
+    text-decoration: none; /* Disable default */
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 28px 13px; /* Start after checkbox, vertically centered approx */
+    background-size: 0% 1.5px;
+    background-repeat: no-repeat;
+    animation: strikethrough 0.4s ease forwards 0.2s;
+}
+
+/* Keyframes */
+@keyframes jelly {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.25, 0.75); }
+    40% { transform: scale(0.75, 1.25); }
+    50% { transform: scale(1.15, 0.85); }
+    65% { transform: scale(0.95, 1.05); }
+    75% { transform: scale(1.05, 0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes strikethrough {
+    from { background-size: 0% 1.5px; }
+    to { background-size: calc(100% - 28px) 1.5px; }
+}
+
+@keyframes fireworks {
+    0% {
+        opacity: 1;
+        box-shadow:
+            0 0 0 -2px var(--oat-green),
+            0 0 0 -2px var(--oat-accent),
+            0 0 0 -2px var(--oat-green),
+            0 0 0 -2px var(--oat-accent),
+            0 0 0 -2px var(--oat-green),
+            0 0 0 -2px var(--oat-accent);
+    }
+    100% {
+        opacity: 0;
+        box-shadow:
+            0 -18px 0 -2px var(--oat-green),
+            14px -10px 0 -2px var(--oat-accent),
+            14px 10px 0 -2px var(--oat-green),
+            0 18px 0 -2px var(--oat-accent),
+            -14px 10px 0 -2px var(--oat-green),
+            -14px -10px 0 -2px var(--oat-accent);
+    }
 }
 
 /* Toggle Switch (Obsidian Settings Override - Cyber Style) */
