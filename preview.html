@@ -186,7 +186,9 @@
                     </blockquote>
 
                     <h2>Typography & Colors</h2>
-                    <p>Standard text looks like this. It should be legible and comfortable.</p>
+                    <p>Standard text looks like this. It should be legible and comfortable. To truly test the line-height configuration, we need a longer paragraph that wraps multiple lines. Good typography is about the rhythm of the language as it flows down the page, ensuring that the reader's eye can easily track from the end of one line to the beginning of the next without fatigue. The vertical space between lines (leading) plays a crucial role in this, as does the measure (line length).</p>
+                    
+                    <p>这是一段中文长文本测试。在设计排版时，中文字符的密度通常比英文更高，因此需要更宽松的行高来保证呼吸感。如果行高设置得当，大段文字看起来会像是一块块整齐的织物，既紧凑又有序。反之，如果行距过小，文字会挤在一起，令人感到压抑；如果过大，视线跳跃时容易产生断裂感。优雅的排版应该是在“透气”与“凝聚”之间找到完美的平衡。</p>
                     
                     <!-- Replicating the screenshot context -->
                     <div style="margin: 20px 0;">
@@ -247,6 +249,147 @@ function helloWorld() {
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- New Obsidian Widgets Showcase -->
+                    
+                    <h3>Tasks</h3>
+                    <ul class="contains-task-list">
+                        <li class="task-list-item">
+                            <input type="checkbox" class="task-list-item-checkbox">
+                            Incomplete task
+                        </li>
+                        <li class="task-list-item is-checked">
+                            <input type="checkbox" class="task-list-item-checkbox" checked>
+                            Completed task
+                        </li>
+                        <li class="task-list-item">
+                            <input type="checkbox" class="task-list-item-checkbox">
+                            <span class="tag" href="#high-value">#urgent</span> Review the quarterly report
+                        </li>
+                    </ul>
+
+                    <h3>Callouts</h3>
+                    
+                    <div class="callout" data-callout="note">
+                        <div class="callout-title">
+                            <div class="callout-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="2" x2="22" y2="6"></line><path d="M7.5 20.5 19 9l-4-4L3.5 16.5 2 22z"></path></svg>
+                            </div>
+                            Note
+                        </div>
+                        <div class="callout-content">
+                            <p>This is a standard note callout. It uses the primary theme color.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout" data-callout="info">
+                        <div class="callout-title">
+                            <div class="callout-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            </div>
+                            Info
+                        </div>
+                        <div class="callout-content">
+                            <p>Information callouts are useful for highlighting additional context.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout" data-callout="success">
+                        <div class="callout-title">
+                            <div class="callout-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </div>
+                            Success
+                        </div>
+                        <div class="callout-content">
+                            <p>Great job! The operation completed successfully.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout" data-callout="warning">
+                        <div class="callout-title">
+                            <div class="callout-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            </div>
+                            Warning
+                        </div>
+                        <div class="callout-content">
+                            <p>Proceed with caution. Changes may be irreversible.</p>
+                        </div>
+                    </div>
+
+                    <div class="callout" data-callout="error">
+                        <div class="callout-title">
+                            <div class="callout-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            </div>
+                            Error
+                        </div>
+                        <div class="callout-content">
+                            <p>Something went wrong. Please check your configuration.</p>
+                        </div>
+                    </div>
+
+                    <h3>Properties (Frontmatter)</h3>
+                    <div class="metadata-container">
+                        <div class="metadata-content">
+                            <div class="metadata-property">
+                                <div class="metadata-property-key">created</div>
+                                <div class="metadata-property-value">
+                                    <span class="metadata-input">2023-10-27 10:30</span>
+                                </div>
+                            </div>
+                            <div class="metadata-property">
+                                <div class="metadata-property-key">tags</div>
+                                <div class="metadata-property-value">
+                                    <div class="multi-select-pill">
+                                        project
+                                        <span class="multi-select-pill-remove">×</span>
+                                    </div>
+                                    <div class="multi-select-pill">
+                                        urgent
+                                        <span class="multi-select-pill-remove">×</span>
+                                    </div>
+                                    <input type="text" class="metadata-input" placeholder="Add..." style="width: 60px; padding: 0;">
+                                </div>
+                            </div>
+                             <div class="metadata-property">
+                                <div class="metadata-property-key">status</div>
+                                <div class="metadata-property-value">
+                                    <span class="metadata-input">In Progress</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Settings Widgets</h3>
+                    <div style="display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px;">
+                        <!-- Toggle -->
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <div style="font-weight: 600;">Enable Feature</div>
+                                <div style="font-size: 0.9em; color: var(--oat-text-secondary);">Description of what this does</div>
+                            </div>
+                            <div class="checkbox-container is-enabled"></div>
+                        </div>
+
+                         <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <div>
+                                <div style="font-weight: 600;">Show Line Numbers</div>
+                                <div style="font-size: 0.9em; color: var(--oat-text-secondary);">Display line numbers in editor</div>
+                            </div>
+                            <div class="checkbox-container"></div>
+                        </div>
+
+                        <!-- Slider -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <div style="font-weight: 600;">Opacity</div>
+                                <div style="font-family: var(--font-monospace); font-size: 0.9em;">75%</div>
+                            </div>
+                            <input type="range" min="0" max="100" value="75">
+                        </div>
+                    </div>
 
                 </div>
             </div>
