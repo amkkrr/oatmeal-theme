@@ -72,7 +72,7 @@
     --scrollbar-thumb-bg: var(--oat-bg-surface-5);
 
     /* Typography */
-    --font-default: 'Montserrat', 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-default: 'Montserrat', 'WenQuanYi Micro Hei', 'Noto Sans SC', 'PingFang SC', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-interface: var(--font-default);
     --font-text: var(--font-default);
     --font-monospace: 'Courier New', 'Songti SC', monospace;
