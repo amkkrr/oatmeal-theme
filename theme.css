@@ -833,70 +833,82 @@ a.tag[href="#high-value"]:visited {
 }
 
 /* Toggle Switch (Obsidian Settings Override - Cyber Style) */
-.checkbox-container {
-    display: inline-block;
-    width: 64px;
-    height: 32px;
-    background: var(--oat-bg-surface-1); /* Track Background */
-    border-radius: 16px;
-    position: relative;
+/* Increase cascade power globally (needed for Settings page too). */
+.checkbox-container.checkbox-container {
+    display: inline-block !important;
+    width: 64px !important;
+    height: 32px !important;
+    background: var(--oat-bg-surface-1) !important; /* Track Background */
+    border-radius: 16px !important;
+    position: relative !important;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
     vertical-align: middle;
     flex-shrink: 0;
-    box-shadow: none; /* Flat design */
-    border: none;
-    overflow: hidden;
+    box-shadow: none !important; /* Flat design */
+    border: none !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+/* Keep the real checkbox accessible but visually hidden. */
+.checkbox-container.checkbox-container > input[type="checkbox"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    pointer-events: none;
 }
 
 /* Track Decoration (Simulating track::before) */
-.checkbox-container::before {
-    content: "";
-    position: absolute;
-    inset: 2px;
-    border-radius: 14px;
-    background: var(--oat-bg-surface-3); /* Inner track color */
-    z-index: 0;
+.checkbox-container.checkbox-container::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 2px !important;
+    border-radius: 14px !important;
+    background: var(--oat-bg-surface-3) !important; /* Inner track color */
+    z-index: 0 !important;
     transition: all 0.4s ease;
 }
 
 /* Thumb (Simulating .cyber-toggle-thumb) */
-.checkbox-container::after {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 24px;
-    height: 24px;
-    background: var(--oat-bg-base);
-    border-radius: 50%;
-    z-index: 2;
+.checkbox-container.checkbox-container::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 4px !important;
+    left: 4px !important;
+    width: 24px !important;
+    height: 24px !important;
+    background: var(--oat-bg-base) !important;
+    border-radius: 50% !important;
+    z-index: 2 !important;
     transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
-    box-shadow: none; /* Flat design */
+    box-shadow: none !important; /* Flat design */
 }
 
 /* Active State - Glow/Color (Simulating .cyber-toggle-track-glow) */
-.checkbox-container.is-enabled {
-    background: linear-gradient(90deg, var(--oat-green), var(--oat-accent));
+.checkbox-container.checkbox-container.is-enabled {
+    background: linear-gradient(90deg, var(--oat-green), var(--oat-accent)) !important;
 }
 
-.checkbox-container.is-enabled::before {
-    opacity: 0.5; /* Show glow through */
-    background: transparent; /* Or make it translucent */
+.checkbox-container.checkbox-container.is-enabled::before {
+    opacity: 0.5 !important; /* Show glow through */
+    background: transparent !important; /* Or make it translucent */
 }
 
 /* Active State - Thumb Position */
-.checkbox-container.is-enabled::after {
-    transform: translateX(32px); /* 64px width - 4px left - 24px thumb width - 4px margin = 32px move */
-    background: var(--oat-bg-surface-3);
+.checkbox-container.checkbox-container.is-enabled::after {
+    transform: translateX(32px) !important; /* 64px width - 4px left - 24px thumb width - 4px margin = 32px move */
+    background: var(--oat-bg-surface-3) !important;
 }
 
 /* Hover Effects */
-.checkbox-container:hover::before {
-    background: var(--oat-bg-surface-4);
+.checkbox-container.checkbox-container:hover::before {
+    background: var(--oat-bg-surface-4) !important;
 }
 
-.checkbox-container.is-enabled:hover {
+.checkbox-container.checkbox-container.is-enabled:hover {
     opacity: 0.9;
 }
 
