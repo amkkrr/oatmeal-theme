@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oatmeal Theme Preview</title>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="theme.css?v=2">
+    <style>
+        /* Basic layout structure to mimic Obsidian's shell */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            /* Default to light theme variables if not handled by class strictly */
+            background-color: var(--oat-bg-base); 
+            color: var(--oat-text-primary);
+        }
+
+        /* Layout areas */
+        .workspace {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Titlebar */
+        .titlebar {
+            height: 30px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            justify-content: space-between;
+        }
+
+        /* Ribbon */
+        .workspace-ribbon {
+            width: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            gap: 15px;
+        }
+        .ribbon-icon {
+            width: 20px;
+            height: 20px;
+            background-color: currentColor;
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            opacity: 0.7;
+        }
+
+        /* Sidebar */
+        .workspace-split.mod-left-split {
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-content {
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        /* Main Content */
+        .workspace-split.mod-root {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .view-header {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            justify-content: space-between;
+        }
+        
+        .markdown-source-view {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 25px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            gap: 15px;
+        }
+
+        /* Helper for the theme toggle button */
+        .theme-toggle {
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: var(--oat-green);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Mock icons */
+        .icon-mock {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            border: 2px solid currentColor;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="app-container" class="theme-light">
+    
+    <!-- Titlebar -->
+    <div class="titlebar">
+        <div class="titlebar-text">Obsidian - My Vault</div>
+        <div style="display: flex; gap: 8px;">
+            <div class="icon-mock"></div>
+            <div class="icon-mock"></div>
+            <div class="icon-mock"></div>
+        </div>
+    </div>
+
+    <div class="workspace">
+        <!-- Ribbon -->
+        <div class="workspace-ribbon mod-left">
+            <div class="clickable-icon" title="Open Switcher"><span class="icon-mock"></span></div>
+            <div class="clickable-icon" title="Graph View"><span class="icon-mock"></span></div>
+            <div class="clickable-icon" title="Settings"><span class="icon-mock"></span></div>
+        </div>
+
+        <!-- Left Sidebar (File Explorer) -->
+        <div class="workspace-split mod-left-split">
+            <div class="workspace-tab-header-container">
+                <div class="workspace-tab-header is-active">Files</div>
+                <div class="workspace-tab-header">Search</div>
+            </div>
+            <div class="sidebar-content">
+                <div class="nav-folder-title">Projects</div>
+                <div class="nav-file-title is-active">Oatmeal Theme</div>
+                <div class="nav-file-title">Laper Design Specs</div>
+                <div class="nav-file-title">Meeting Notes</div>
+                <div class="nav-folder-title">Archive</div>
+                <div class="nav-file-title">Old Ideas</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="workspace-split mod-root">
+            <div class="view-header">
+                <div class="view-header-title">Oatmeal Theme Preview</div>
+                <div class="view-actions">
+                    <span class="clickable-icon icon-mock"></span>
+                </div>
+            </div>
+
+            <div class="markdown-source-view mod-cm6">
+                <div class="cm-scroller">
+                    <h1>Oatmeal Theme Showcase</h1>
+                    <p>This is a preview of the <a class="tag" href="#active">#active</a> Oatmeal theme. It is designed to be warm, productive, and easy on the eyes.</p>
+                    
+                    <blockquote>
+                        "Design is not just what it looks like and feels like. Design is how it works."
+                    </blockquote>
+
+                    <h2>Typography & Colors</h2>
+                    <p>Standard text looks like this. It should be legible and comfortable.</p>
+                    
+                    <!-- Replicating the screenshot context -->
+                    <div style="margin: 20px 0;">
+                         <mark>Meeting with Adam 8:00 - 9:00</mark>
+                         <span class="tag">#Meeting</span>
+                    </div>
+
+                    <ul>
+                        <li><span class="tag" href="#high-value">#high-value</span> Item in a list</li>
+                        <li>Another item here</li>
+                        <li><strong>Bold text</strong> and <em>Italic text</em></li>
+                    </ul>
+
+                    <h3>Interface Elements</h3>
+                    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
+                        <button class="mod-cta">Primary Button</button>
+                        <button class="mod-cta" style="background: transparent; border: 1px solid var(--oat-border);">Secondary</button>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" placeholder="Type something..." value="Input field value">
+                    </div>
+
+                    <h3>Code Block</h3>
+                    <pre style="background: var(--oat-bg-surface-2); padding: 10px; border-radius: var(--radius-m); font-family: var(--font-monospace);">
+function helloWorld() {
+    console.log("Hello Oatmeal!");
+    return true;
+}</pre>
+
+                    <h3>Chinese Font Test (中文测试)</h3>
+                    <p>这是中文段落测试。应该优先使用 Noto Sans SC 或 PingFang SC。设计风格应该保持温暖和高效。</p>
+
+                    <h3>Table Preview</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Alice Smith</td>
+                                <td>Designer</td>
+                                <td><span class="tag">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Bob Johnson</td>
+                                <td>Developer</td>
+                                <td><span class="tag" href="#high-value">Busy</span></td>
+                            </tr>
+                             <tr>
+                                <td>Charlie Brown</td>
+                                <td>Manager</td>
+                                <td><span class="tag">Away</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div>120 words</div>
+        <div>2 mins read</div>
+        <div style="margin-left: auto;">Ln 12, Col 4</div>
+    </div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark/Light Mode</button>
+</div>
+
+<script>
+    function toggleTheme() {
+        const app = document.getElementById('app-container');
+        if (app.classList.contains('theme-light')) {
+            app.classList.remove('theme-light');
+            app.classList.add('theme-dark');
+        } else {
+            app.classList.remove('theme-dark');
+            app.classList.add('theme-light');
+        }
+    }
+</script>
+
+</body>
+</html>
