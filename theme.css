@@ -716,7 +716,11 @@ a.tag[href="#high-value"]:visited {
     gap: 10px;
     margin-left: -1.5em; /* Counteract padding-left of ul */
     position: relative;
-    transition: color 0.3s ease;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 28px 13px; /* Start after checkbox, vertically centered approx */
+    background-size: 0% 1.5px;
+    background-repeat: no-repeat;
+    transition: color 0.3s ease, background-size 0.4s ease;
 }
 
 /* Checkbox Base Styles */
@@ -787,12 +791,9 @@ a.tag[href="#high-value"]:visited {
 /* Strikethrough Animation */
 .task-list-item.is-checked {
     color: var(--oat-text-tertiary);
-    text-decoration: none; /* Disable default */
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 28px 13px; /* Start after checkbox, vertically centered approx */
-    background-size: 0% 1.5px;
-    background-repeat: no-repeat;
-    animation: strikethrough 0.4s ease forwards;
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    background-size: calc(100% - 28px) 1.5px;
 }
 
 /* Keyframes */
@@ -806,10 +807,7 @@ a.tag[href="#high-value"]:visited {
     100% { transform: scale(1); }
 }
 
-@keyframes strikethrough {
-    from { background-size: 0% 1.5px; }
-    to { background-size: calc(100% - 28px) 1.5px; }
-}
+/* Strikethrough uses transition now (prevents replay on view switches). */
 
 @keyframes fireworks {
     0% {
