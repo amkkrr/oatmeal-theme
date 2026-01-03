@@ -228,21 +228,174 @@ body {
     background-color: var(--oat-bg-surface-1);
 }
 
+/* Tabs - Workspace Root (Obsidian Style) */
 .workspace-tab-header-container {
     background-color: var(--oat-bg-surface-1);
     border-bottom: 1px solid var(--oat-border);
+    padding: 6px 8px 0 8px;
+    gap: 4px;
+    height: 40px; /* Explicit height for alignment */
+    align-items: flex-end; /* Tabs sit on the bottom line */
 }
 
+/* Base Tab Header */
 .workspace-tab-header {
     color: var(--oat-text-secondary);
+    padding: 0; /* Layout handled by inner */
+    border-radius: var(--radius-m) var(--radius-m) 0 0;
+    margin-right: 2px;
+    transition: background-color 0.1s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    max-width: 200px;
+    flex: 1 1 auto; /* Allow shrinking/growing */
+    min-width: 0; /* Allow flex item to shrink below content size */
+    position: relative;
+}
+
+.workspace-tab-header:after {
+    /* Separator line logic often used in Obsidian, but we'll stick to bg colors */
+    content: none;
+}
+
+/* Tab Inner Layout */
+.workspace-tab-header-inner {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    gap: 6px;
+    height: 100%;
+}
+
+.workspace-tab-header-inner-icon {
+    display: flex;
+    align-items: center;
+    color: var(--oat-text-tertiary);
+}
+.workspace-tab-header-inner-icon svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2px;
+}
+
+.workspace-tab-header-inner-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.85rem;
+}
+
+/* Close Button (Hidden by default, shown on hover/active) */
+.workspace-tab-header-inner-close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+    opacity: 0; /* Hidden by default */
+    color: var(--oat-text-tertiary);
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.workspace-tab-header:hover .workspace-tab-header-inner-close-button,
+.workspace-tab-header.is-active .workspace-tab-header-inner-close-button {
+    opacity: 1;
+}
+
+.workspace-tab-header-inner-close-button:hover {
+    background-color: rgba(0,0,0,0.1);
+    color: var(--oat-text-primary);
+}
+.theme-dark .workspace-tab-header-inner-close-button:hover {
+    background-color: rgba(255,255,255,0.15);
+}
+
+.workspace-tab-header-inner-close-button svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 2.5px;
+}
+
+/* States */
+.workspace-tab-header:hover {
+    background-color: var(--oat-bg-surface-5); /* Slight hover effect */
 }
 
 .workspace-tab-header.is-active {
+    background-color: var(--oat-bg-surface-2); /* Match content bg */
     color: var(--oat-text-primary);
+    box-shadow: 0 0 0 1px var(--oat-border); /* Subtle border definition */
+    border-bottom-color: var(--oat-bg-surface-2); /* Merge with content */
+    z-index: 1; /* Sit above the container border */
+    margin-bottom: -1px; /* Overlap the container border */
+}
+
+.workspace-tab-header.is-active:before {
+    /* Optional Top Accent Line */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--oat-green);
+    border-radius: var(--radius-m) var(--radius-m) 0 0;
+    opacity: 0; /* Hidden in default Obsidian, but good for custom themes. Enable if desired. */
+}
+
+/* New Tab Button */
+.workspace-tab-header-new-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 2px;
+    opacity: 0.6;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.workspace-tab-header-new-tab:hover {
+    opacity: 1;
+    color: var(--oat-text-primary);
+}
+.workspace-tab-header-new-tab svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Sidebar Tab Header Overrides (Left Panel) */
+/* Reset the complex styles for the simple text-only tabs in the sidebar */
+.workspace-split.mod-left-split .workspace-tab-header-container {
+    height: auto;
+    padding: 0;
+    align-items: center;
+    gap: 0;
+}
+
+.workspace-split.mod-left-split .workspace-tab-header {
+    padding: 8px 16px;
+    border-radius: 0;
+    margin-right: 0;
     background-color: transparent;
-    font-weight: 600;
+    flex: 0 1 auto;
     box-shadow: none;
-    /* Remove underline default style */
+    margin-bottom: 0;
+}
+
+.workspace-split.mod-left-split .workspace-tab-header:hover {
+    background-color: transparent;
+    color: var(--oat-text-primary);
+}
+
+.workspace-split.mod-left-split .workspace-tab-header.is-active {
+    background-color: transparent;
+    box-shadow: inset 0 -2px 0 0 var(--oat-green);
+    color: var(--oat-text-primary);
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
 /* --- File Explorer / Lists --- */
@@ -592,7 +745,7 @@ a.tag[href="#high-value"]:visited {
     color: var(--oat-text-tertiary);
 }
 
-/* Toggle Switch (Settings) */
+/* Toggle Switch (Settings) - LEGACY
 .checkbox-container {
     display: inline-block;
     width: 42px;
@@ -603,7 +756,7 @@ a.tag[href="#high-value"]:visited {
     cursor: pointer;
     transition: background-color 0.2s;
     border: 1px solid var(--oat-border);
-    vertical-align: middle; /* Ensures toggle aligns with label text */
+    vertical-align: middle;
     flex-shrink: 0;
 }
 
@@ -628,6 +781,318 @@ a.tag[href="#high-value"]:visited {
 .checkbox-container.is-enabled:after {
     transform: translateX(18px);
     background-color: white;
+}
+*/
+
+/* Cyber Toggle (New) */
+.cyber-toggle-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  /* padding: 15px; */ /* Removed excessive padding to fit in settings */
+}
+
+.cyber-toggle-checkbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.cyber-toggle {
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.cyber-toggle-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--oat-bg-surface-1); /* #111 -> surface-1 */
+  border-radius: 16px;
+  overflow: hidden;
+  /* box-shadow removed */
+  transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
+}
+
+.cyber-toggle-track::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 14px;
+  background: var(--oat-bg-surface-3); /* #222 -> surface-3 */
+  /* box-shadow removed */
+  z-index: 0;
+  transition: all 0.4s ease;
+}
+
+.cyber-toggle-track-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, var(--oat-green), var(--oat-accent)); /* #03e9f4, #4a00e0 -> theme colors */
+  opacity: 0;
+  border-radius: 16px;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.cyber-toggle-thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  background: var(--oat-bg-base); /* #151515 -> base */
+  border-radius: 50%;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
+  /* box-shadow removed */
+}
+
+.cyber-toggle-thumb-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.1),
+    transparent 70%
+  );
+  z-index: 1;
+}
+
+.cyber-toggle-thumb-highlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 70% 70%,
+    rgba(0, 0, 0, 0.2),
+    transparent 70%
+  );
+  z-index: 1;
+}
+
+.cyber-toggle-thumb-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  opacity: 0.7;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.cyber-toggle-thumb-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: none; /* Changed to stroke based on icon style, or fill if filled icon */
+  stroke: var(--oat-text-secondary); /* #555 -> secondary */
+  transition:
+    stroke 0.4s ease,
+    transform 0.4s ease;
+}
+
+.cyber-toggle-track-dots {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 10px;
+  z-index: 1;
+}
+
+.cyber-toggle-track-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--oat-text-tertiary); /* #444 -> tertiary */
+  margin-left: 3px;
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.cyber-toggle-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 16px;
+}
+
+.cyber-toggle-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--oat-green); /* #03e9f4 -> green */
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(1px);
+  transition: all 0.3s ease;
+  /* box-shadow removed */
+}
+
+.cyber-toggle-particle:nth-child(1) {
+  top: 35%;
+  right: 30%;
+}
+
+.cyber-toggle-particle:nth-child(2) {
+  top: 50%;
+  right: 35%;
+}
+
+.cyber-toggle-particle:nth-child(3) {
+  top: 40%;
+  right: 40%;
+}
+
+.cyber-toggle-particle:nth-child(4) {
+  top: 55%;
+  right: 25%;
+}
+
+.cyber-toggle-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: var(--font-interface);
+}
+
+.cyber-toggle-label-off {
+  color: var(--oat-text-secondary); /* #555 -> secondary */
+  transition: all 0.4s ease;
+}
+
+.cyber-toggle-label-on {
+  color: var(--oat-text-secondary); /* #555 -> secondary */
+  transition: all 0.4s ease;
+}
+
+/* Stati attivi */
+.cyber-toggle-checkbox:checked + .cyber-toggle .cyber-toggle-track-glow {
+  opacity: 0.5;
+}
+
+.cyber-toggle-checkbox:checked + .cyber-toggle .cyber-toggle-thumb {
+  left: calc(100% - 28px);
+  background: var(--oat-bg-surface-3); /* #222 -> surface-3 */
+}
+
+.cyber-toggle-checkbox:checked + .cyber-toggle .cyber-toggle-thumb-icon {
+  transform: rotate(360deg);
+}
+
+.cyber-toggle-checkbox:checked + .cyber-toggle .cyber-toggle-thumb-icon svg {
+  stroke: var(--oat-green); /* #03e9f4 -> green */
+}
+
+.cyber-toggle-checkbox:checked + .cyber-toggle .cyber-toggle-track-dot {
+  background: var(--oat-green); /* #03e9f4 -> green */
+  /* box-shadow removed */
+  opacity: 1;
+}
+
+.cyber-toggle-checkbox:checked ~ .cyber-toggle-labels .cyber-toggle-label-on {
+  color: var(--oat-green); /* #03e9f4 -> green */
+  text-shadow: 0 0 5px var(--oat-green);
+}
+
+.cyber-toggle-checkbox:not(:checked)
+  ~ .cyber-toggle-labels
+  .cyber-toggle-label-off {
+  color: var(--oat-text-tertiary); /* #aaa -> tertiary */
+}
+
+/* Animazione particelle quando attivo */
+.cyber-toggle-checkbox:checked + .cyber-toggle .cyber-toggle-particle {
+  opacity: 1;
+  animation: cyber-toggle-float 3s infinite alternate;
+}
+
+.cyber-toggle-checkbox:checked
+  + .cyber-toggle
+  .cyber-toggle-particle:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.cyber-toggle-checkbox:checked
+  + .cyber-toggle
+  .cyber-toggle-particle:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.cyber-toggle-checkbox:checked
+  + .cyber-toggle
+  .cyber-toggle-particle:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.cyber-toggle-checkbox:checked
+  + .cyber-toggle
+  .cyber-toggle-particle:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+/* Effetto hover */
+.cyber-toggle:hover .cyber-toggle-track::before {
+  background: var(--oat-bg-surface-4); /* #272727 -> surface-4 */
+}
+
+.cyber-toggle:hover .cyber-toggle-thumb {
+  /* box-shadow removed */
+}
+
+.cyber-toggle-checkbox:checked + .cyber-toggle:hover .cyber-toggle-track-glow {
+  opacity: 0.7;
+}
+
+/* Effetto focus per accessibilità */
+.cyber-toggle-checkbox:focus + .cyber-toggle {
+  outline: none;
+}
+
+.cyber-toggle-checkbox:focus + .cyber-toggle::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  border: 2px solid var(--oat-green);
+  opacity: 0.5;
+}
+
+@keyframes cyber-toggle-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* --- Sliders --- */
