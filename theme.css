@@ -376,6 +376,26 @@ textarea {
     padding: 8px 12px;
 }
 
+/* Fix for Settings Page Alignment */
+.setting-item {
+    border-top: 1px solid var(--oat-border);
+}
+
+.setting-item-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting-item-name {
+    font-weight: 500;
+    color: var(--oat-text-primary);
+}
+
+.setting-item-description {
+    color: var(--oat-text-secondary);
+}
+
 input[type="text"]:focus,
 input[type="search"]:focus,
 textarea:focus {
@@ -583,6 +603,8 @@ a.tag[href="#high-value"]:visited {
     cursor: pointer;
     transition: background-color 0.2s;
     border: 1px solid var(--oat-border);
+    vertical-align: middle; /* Ensures toggle aligns with label text */
+    flex-shrink: 0;
 }
 
 .checkbox-container:after {
@@ -613,6 +635,9 @@ input[type=range] {
     -webkit-appearance: none;
     width: 100%;
     background: transparent;
+    vertical-align: middle; /* Critical for alignment with icons/text */
+    margin: 0; /* Remove default margins that might cause offsets */
+    cursor: pointer;
 }
 
 input[type=range]::-webkit-slider-thumb {
@@ -623,8 +648,10 @@ input[type=range]::-webkit-slider-thumb {
     background: var(--oat-bg-surface-1);
     border: 2px solid var(--oat-green);
     cursor: pointer;
-    margin-top: -6px;
+    margin-top: -6px; /* Centers thumb on the 4px track */
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
 }
 
 input[type=range]::-webkit-slider-runnable-track {
@@ -633,6 +660,7 @@ input[type=range]::-webkit-slider-runnable-track {
     cursor: pointer;
     background: var(--oat-bg-surface-5);
     border-radius: 2px;
+    border: none;
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
