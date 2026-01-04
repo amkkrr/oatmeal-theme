@@ -89,6 +89,15 @@
     --spacing-block: 1.5rem;     /* Standard rhythm between paragraphs */
     --spacing-heading-top: 2.5rem; /* Breathable space before new sections */
     --spacing-heading-bottom: 0.75rem; /* Closeness to content */
+
+    /* --- Override Obsidian Components (Toggle/Button) --- */
+    --toggle-width: 64px;
+    --toggle-radius: 16px;
+    --toggle-border-width: 0px;
+    --toggle-thumb-width: 24px;
+    --toggle-thumb-height: 24px;
+    --toggle-thumb-radius: 50%;
+    /* Note: Obsidian doesn't always expose toggle-height, but width drives it often */
 }
 
 .theme-dark {
@@ -173,6 +182,14 @@
        but currently inheriting logic from variables is fine.
        We keep line-height consistent. */
     --line-height-normal: 1.65;
+
+    /* --- Override Obsidian Components (Toggle/Button) --- */
+    --toggle-width: 64px;
+    --toggle-radius: 16px;
+    --toggle-border-width: 0px;
+    --toggle-thumb-width: 24px;
+    --toggle-thumb-height: 24px;
+    --toggle-thumb-radius: 50%;
 }
 
 /* --- Global & Workspace --- */
@@ -834,7 +851,9 @@ a.tag[href="#high-value"]:visited {
 
 /* Toggle Switch (Obsidian Settings Override - Cyber Style) */
 /* Increase cascade power globally (needed for Settings page too). */
-.checkbox-container.checkbox-container {
+/* Target both generic context and Settings specific context to ensure override */
+.checkbox-container,
+.setting-item .checkbox-container {
     display: inline-block !important;
     width: 64px !important;
     height: 32px !important;
@@ -852,7 +871,8 @@ a.tag[href="#high-value"]:visited {
 }
 
 /* Keep the real checkbox accessible but visually hidden. */
-.checkbox-container.checkbox-container > input[type="checkbox"] {
+.checkbox-container input[type="checkbox"],
+.setting-item .checkbox-container input[type="checkbox"] {
     position: absolute !important;
     opacity: 0 !important;
     width: 0 !important;
@@ -862,7 +882,8 @@ a.tag[href="#high-value"]:visited {
 }
 
 /* Track Decoration (Simulating track::before) */
-.checkbox-container.checkbox-container::before {
+.checkbox-container::before,
+.setting-item .checkbox-container::before {
     content: "" !important;
     position: absolute !important;
     inset: 2px !important;
@@ -873,7 +894,8 @@ a.tag[href="#high-value"]:visited {
 }
 
 /* Thumb (Simulating .cyber-toggle-thumb) */
-.checkbox-container.checkbox-container::after {
+.checkbox-container::after,
+.setting-item .checkbox-container::after {
     content: '' !important;
     position: absolute !important;
     top: 4px !important;
@@ -888,27 +910,32 @@ a.tag[href="#high-value"]:visited {
 }
 
 /* Active State - Glow/Color (Simulating .cyber-toggle-track-glow) */
-.checkbox-container.checkbox-container.is-enabled {
+.checkbox-container.is-enabled,
+.setting-item .checkbox-container.is-enabled {
     background: linear-gradient(90deg, var(--oat-green), var(--oat-accent)) !important;
 }
 
-.checkbox-container.checkbox-container.is-enabled::before {
+.checkbox-container.is-enabled::before,
+.setting-item .checkbox-container.is-enabled::before {
     opacity: 0.5 !important; /* Show glow through */
     background: transparent !important; /* Or make it translucent */
 }
 
 /* Active State - Thumb Position */
-.checkbox-container.checkbox-container.is-enabled::after {
+.checkbox-container.is-enabled::after,
+.setting-item .checkbox-container.is-enabled::after {
     transform: translateX(32px) !important; /* 64px width - 4px left - 24px thumb width - 4px margin = 32px move */
     background: var(--oat-bg-surface-3) !important;
 }
 
 /* Hover Effects */
-.checkbox-container.checkbox-container:hover::before {
+.checkbox-container:hover::before,
+.setting-item .checkbox-container:hover::before {
     background: var(--oat-bg-surface-4) !important;
 }
 
-.checkbox-container.checkbox-container.is-enabled:hover {
+.checkbox-container.is-enabled:hover,
+.setting-item .checkbox-container.is-enabled:hover {
     opacity: 0.9;
 }
 
@@ -1276,7 +1303,13 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 .metadata-property {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* 恢复默认间距，稍后在 key 内部精确控制字符间距 */
+}
+
+.metadata-property-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .metadata-property-key {
@@ -1324,4 +1357,21 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 }
 .multi-select-pill-remove:hover {
     opacity: 1;
+}
+
+/* Remove box styling from Frontmatter/Properties keys */
+.metadata-property-key .metadata-property-key-input {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 0 8px; /* 在左侧增加 8px 的内边距，增加与图标的间距 */
+    display: flex;
+    align-items: center;
+    line-height: 1.2; /* 确保字符垂直居中 */
+}
+
+.metadata-property-key .metadata-property-key-input:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
 }
